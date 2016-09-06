@@ -399,7 +399,9 @@ apr_status_t small_light_filter_imlib2_output_data(
         apr_mmap_delete(org_image_mmap);
         if (exif_size > 0) {
             ap_log_rerror(APLOG_MARK, APLOG_DEBUG, 0, r, "Exif found. size = %d", exif_size);
-        }
+        } else {
+	    ap_log_rerror(APLOG_MARK, APLOG_DEBUG, 0, r, "Exif is not found. size = %d. image_length = %d", exif_size,lctx->image_len);
+	}
     }
 
     // pass through.
